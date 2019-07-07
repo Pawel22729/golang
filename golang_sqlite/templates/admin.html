@@ -4,16 +4,21 @@
 </head>
 
 <body>
-    
+    <h1>This form will add an article to a table</h1>
     <form method="POST">
-        <input type="text" name="imie_">
-        <input type="text" name="nazwisko_">
+        Author name:</br>
+        <input type="text" name="form_author">
+    </br>Article subject:<br>
+        <input type="text" name="form_subject">
+    </br>Article content:<br>
+        <input type="text" name="form_content" style="height: 150px; width: 200px;">
+        <br>
         <input type="submit">
     </form>
 
     {{if .}}
-        {{.Imie}}
-        {{.Nazwisko}}
+        Successfully added:<br> 
+        {{.Author}}
     {{else}}
         <b>No data yet!</b>
     {{end}}

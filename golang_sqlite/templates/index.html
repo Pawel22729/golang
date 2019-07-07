@@ -1,0 +1,20 @@
+<html>
+<head>
+
+</head>
+
+<body>
+    <h1>This will show an articles added</h1>
+    
+    {{if .}}
+        List of added articles<br> 
+        {{ range $k, $v := . }}
+            {{ $v }}<br>
+        {{ end }}
+    {{else}}
+        <b>No data yet!</b>
+    {{end}}
+
+</body>
+
+</html>
