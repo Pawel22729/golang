@@ -1,10 +1,12 @@
 package main
 
 import (
-	"time"
 	"log"
+	"time"
+
 	//"encoding/json"
 	"database/sql"
+
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -15,10 +17,10 @@ func checkErr(err error) {
 }
 
 type Article struct {
-	Author    string
+	Author         string
 	ArticleSubject string
 	ArticleContent string
-	ArticleDate string
+	ArticleDate    string
 }
 
 func sqlInsertArticle(author string, subject string, content string, date time.Time) {
@@ -36,23 +38,23 @@ func sqlGetAllArticles() []Article {
 	Articles, err := db.Query("SELECT * FROM Articles")
 	checkErr(err)
 	var ArticlesList []Article
-	
+
 	for Articles.Next() {
 		var (
-			id int
-			author string
+			id             int
+			author         string
 			articleSubject string
 			articleContent string
-			articleDate string
+			articleDate    string
 		)
 		if err := Articles.Scan(&id, &author, &articleSubject, &articleContent, &articleDate); err != nil {
 			log.Fatal(err)
 		}
 		Art := Article{
-			Author: author,
+			Author:         author,
 			ArticleSubject: articleSubject,
 			ArticleContent: articleContent,
-			ArticleDate: articleDate,
+			ArticleDate:    articleDate,
 		}
 		ArticlesList = append(ArticlesList, Art)
 	}

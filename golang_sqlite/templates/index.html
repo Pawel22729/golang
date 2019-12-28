@@ -6,14 +6,18 @@
 <body>
     <h1>This will show an articles added</h1>
     
+    <center>
     {{if .}}
-        List of added articles<br> 
         {{ range $k, $v := . }}
-            {{ $v }}<br>
+            <h1>{{ $v.ArticleSubject }}</h1><br/>
+            <p>{{ $v.ArticleContent }}</p>
+            Added by: {{ $v.Author }}<br/>
+            Date added: {{ $v.ArticleDate }}
         {{ end }}
     {{else}}
         <b>No data yet!</b>
     {{end}}
+    </center>
 
 </body>
 

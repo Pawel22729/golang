@@ -1,15 +1,16 @@
 package main
 
 import (
-	"time"
 	"html/template"
 	"net/http"
+	"time"
+
 	"github.com/gorilla/mux"
 )
 
 func indexPage(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/index.html"))
-	var ArticlesData = 	sqlGetAllArticles()
+	var ArticlesData = sqlGetAllArticles()
 	tmpl.Execute(w, ArticlesData)
 }
 
@@ -20,7 +21,7 @@ func addArticle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	dateNow := time.Now()
-    if r.FormValue("form_author") != "" && r.FormValue("form_subject") != "" && r.FormValue("form_content") != "" {
+	if r.FormValue("form_author") != "" && r.FormValue("form_subject") != "" && r.FormValue("form_content") != "" {
 		sqlInsertArticle(r.FormValue("form_author"), r.FormValue("form_subject"), r.FormValue("form_content"), dateNow)
 		var TestData = make(map[string]string)
 		TestData["Author"] = r.FormValue("form_author")
