@@ -1,12 +1,10 @@
 package main
 
 import (
-	"log"
 	"time"
-
+	"log"
 	//"encoding/json"
 	"database/sql"
-
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -39,14 +37,14 @@ func sqlGetAllArticles() []Article {
 	Articles, err := db.Query("SELECT * FROM Articles")
 	checkErr(err)
 	var ArticlesList []Article
-
+	
 	for Articles.Next() {
 		var (
-			id             int
-			author         string
+			id int
+			author string
 			articleSubject string
 			articleContent string
-			articleDate    string
+			articleDate string
 		)
 		if err := Articles.Scan(&id, &author, &articleSubject, &articleContent, &articleDate); err != nil {
 			log.Fatal(err)

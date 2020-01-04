@@ -17,11 +17,18 @@ func checkErr(err error) {
 }
 
 type Article struct {
+<<<<<<< Updated upstream
+	Author         string
+	ArticleSubject string
+	ArticleContent string
+	ArticleDate    string
+=======
 	article map[string]string
 	// Author    string
 	// ArticleSubject string
 	// ArticleContent string
 	// ArticleDate string
+>>>>>>> Stashed changes
 }
 
 func sqlInsertArticle(author string, subject string, content string, date time.Time) {
@@ -51,11 +58,19 @@ func sqlGetAllArticles() []Article {
 		if err := Articles.Scan(&id, &author, &articleSubject, &articleContent, &articleDate); err != nil {
 			log.Fatal(err)
 		}
+<<<<<<< Updated upstream
+		Art := Article{
+			Author:         author,
+			ArticleSubject: articleSubject,
+			ArticleContent: articleContent,
+			ArticleDate:    articleDate,
+=======
 		ArtMap := map[string]string{
 			"Author": author,
 			"ArticleSubject": articleSubject,
 			"ArticleContent": articleContent,
 			"ArticleDate": articleDate,
+>>>>>>> Stashed changes
 		}
 		Art := Article{article: ArtMap} 
 		ArticlesList = append(ArticlesList, Art)
