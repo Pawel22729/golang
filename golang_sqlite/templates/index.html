@@ -7,16 +7,11 @@
     <h1>This will show an articles added</h1>
     
     <center>
-    {{if .}}
-        List of added articles<br> 
-        {{ range . }}
-            {{ range . }}
-                {{ . }}<br>
-            {{ end }}
-        {{ end }}
-    {{else}}
+    {% for item in . %}
+        {{ item }}
+    {% endfor %}
         <b>No data yet!</b>
-    {{end}}
+    {{ end }}
     </center>
 
 </body>
