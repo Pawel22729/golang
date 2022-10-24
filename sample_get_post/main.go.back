@@ -1,0 +1,32 @@
+// func main() {
+//     client := &http.Client(
+// 		Timeout: time.Second * 10,
+// 	)
+// 	resp, err := http.Get(fromApiUrl)
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+
+// 	data, _ := ioutil.ReadAll(resp.Body)
+
+// 	var data_result []map[string]interface{}
+// 	json.Unmarshal([]byte(data), &data_result)
+
+// 	var rating map[string]interface{}
+
+// 	for k, _ := range data_result {
+// 		fmt.Println(
+// 			data_result[k]["name"],
+// 			": ",
+// 			data_result[k]["price"],
+// 		)
+// 	}
+
+// 	fmt.Println("\nhow to access nested json?")
+// 	ratingJson, _ := json.Marshal(data_result[0]["rating"])
+// 	json.Unmarshal([]byte(ratingJson), &rating)
+// 	fmt.Println(data_result[0]["name"],
+// 		rating["reviews"],
+// 	)
+
+// }
