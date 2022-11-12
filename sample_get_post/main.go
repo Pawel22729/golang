@@ -13,6 +13,7 @@ import (
 )
 
 const apiUrl = "https://gorest.co.in"
+const jsonHowTo = "https://www.sohamkamani.com/golang/json/"
 
 var apiEndpoints = map[string]string{
 	"users":    "/public/v2/users",
