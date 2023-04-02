@@ -5,20 +5,28 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 )
+
+var apiConf = map[string]string{
+	"baseUrl": "https://gorest.co.in/public/v2",
+	"users":   "/users",
+}
+
+func errChecker(err error) {
+	if err != nil {
+		panic(err)
+	}
+}
 
 func fetchUrl(url string) (string, error) {
 	resp, err := http.Get(url)
-	if err != nil {
-		return "", err
-	}
+	errChecker(err)
 
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return "", err
-	}
+	errChecker(err)
 
 	return string(body), nil
 }
@@ -34,23 +42,36 @@ type User struct {
 func unpackUsers(payload string) []User {
 	var users []User
 	err := json.Unmarshal([]byte(payload), &users)
-	if err != nil {
-		panic(err)
-	}
+	errChecker(err)
 	return users
 }
 
-func main() {
-	url := "https://gorest.co.in/public/v2/users"
+func unpackUser(payload string) User {
+	var user User
+	err := json.Unmarshal([]byte(payload), &user)
+	errChecker(err)
+	return user
+}
+
+func getUser(userId int) User {
+	url := apiConf["baseUrl"] + apiConf["users"] + "/" + strconv.Itoa(userId)
 	resp, err := fetchUrl(url)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+	errChecker(err)
+	user := unpackUser(resp)
+	return user
+}
+
+func main() {
+	url := apiConf["baseUrl"] + apiConf["users"]
+	resp, err := fetchUrl(url)
+	errChecker(err)
 
 	users := unpackUsers(resp)
 
 	for _, user := range users {
-		fmt.Println(user.ID)
+		fmt.Println("User ID: ", user.ID)
+		userData := getUser(user.ID)
+
+		fmt.Println(userData)
 	}
 }
