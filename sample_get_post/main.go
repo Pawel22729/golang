@@ -92,6 +92,6 @@ func createUser(name string, email string, gender string, status string) {
 }
 
 func main() {
-	//getAllUsers()
-	createUser("Pawel Gonzalez", "pablo.zonzalez@gmail.com", "male", "active")
+	getAllUsers()
+	//createUser("Pawel Gonzalez", "pablo.zonzalez@gmail.com", "male", "active")
 }
