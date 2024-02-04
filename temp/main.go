@@ -1,18 +1,22 @@
 package main
 
 import (
+	"strings"
 	"fmt"
 )
 
-func ReverseSeq(n int) []int {
-	var arr []int
-	for i := n; i > 0; i-- {
-		arr = append(arr, i)
-	}
-	return arr
+func Solution(word string) string {
+
+  var new_word []string
+  l := len(word) - 1
+  
+  for i := l; i >= 0; i-- {
+    new_word = append(new_word, string(word[i]))
+  }
+  return strings.Join(new_word, "")
 }
 
 func main() {
-	res := ReverseSeq(5)
-	fmt.Println(res)
+	s := Solution("DUPA")
+	fmt.Println(s)
 }
